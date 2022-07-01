@@ -1,14 +1,8 @@
-import Link from "next/link";
+import BetterLink from "./BetterLink";
 import styled from "styled-components";
 import Nav from "./Nav";
 
-const Logo = styled.h1`
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: bold;
-`;
-
-const HeaderStyles = styled.header`
+const FooterStyles = styled.footer`
   display: flex;
   position: relative;
   flex-direction: row;
@@ -25,8 +19,7 @@ const HeaderStyles = styled.header`
   padding-right: 15px;
   z-index: 0;
 
-  .first-section,
-  .logo-section {
+  .first-section {
     display: flex;
     position: relative;
     flex-basis: auto;
@@ -42,8 +35,7 @@ const HeaderStyles = styled.header`
     z-index: 0;
   }
 
-  .mid-section,
-  .search-section {
+  .mid-section {
     display: flex;
     position: relative;
     flex-basis: auto;
@@ -71,6 +63,13 @@ const HeaderStyles = styled.header`
     padding: 0px;
     min-width: 50px;
     min-height: 30px;
+    margin-left: 1rem;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
   }
 
   @media (min-width: 640px) {
@@ -87,18 +86,13 @@ const HeaderStyles = styled.header`
 
 export default function Header() {
   return (
-    <HeaderStyles>
-      <div className="logo-section">
-        <Logo>
-          <Link href="/">
-            <a>MyApp</a>
-          </Link>
-        </Logo>
+    <FooterStyles>
+      <div className="first-section">
+        <p>Optional footer space, if required.</p>
       </div>
-      <div className="mid-section"></div>
       <div className="outer-section">
-        <Nav />
+        <p>No copyright &copy; 2022</p>
       </div>
-    </HeaderStyles>
+    </FooterStyles>
   );
 }
