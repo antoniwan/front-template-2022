@@ -1,6 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Nav from "./Nav";
+import ThemeToggle from "./ThemeToggle";
+import { useDarkMode } from "next-dark-mode";
 
 const Logo = styled.h1`
   margin: 0;
@@ -48,7 +50,7 @@ const HeaderStyles = styled.header`
     position: relative;
     flex-basis: auto;
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-end;
     justify-content: center;
     flex-grow: 1;
     flex-shrink: 1;
@@ -86,6 +88,10 @@ const HeaderStyles = styled.header`
 `;
 
 export default function Header() {
+  const { darkModeActive, switchToDarkMode, switchToLightMode } = useDarkMode();
+  const toggleDarkMode = () =>
+    darkModeActive ? switchToLightMode() : switchToDarkMode();
+  const activeTheme = darkModeActive ? "dark" : "light";
   return (
     <HeaderStyles>
       <div className="logo-section">
@@ -95,9 +101,11 @@ export default function Header() {
           </Link>
         </Logo>
       </div>
-      <div className="mid-section"></div>
-      <div className="outer-section">
+      <div className="mid-section">
         <Nav />
+      </div>
+      <div className="outer-section">
+        <ThemeToggle theme={activeTheme} toggleTheme={toggleDarkMode} />
       </div>
     </HeaderStyles>
   );
