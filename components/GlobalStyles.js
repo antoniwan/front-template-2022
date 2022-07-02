@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStylesheet = createGlobalStyle`
+
+  // Global CSS Variables
   :root {
     /* Fonts */
     --font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -22,6 +24,8 @@ const GlobalStylesheet = createGlobalStyle`
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09);
   }
 
+
+  // Body / Global
   html {
     font-size: 62.5%;
   }
@@ -38,6 +42,13 @@ const GlobalStylesheet = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  body {
+    background: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
+    transition: all 0.50s linear;
+  }
+
+  // Links
   a {
     text-decoration: none;
     color: var(--black);
@@ -50,10 +61,12 @@ const GlobalStylesheet = createGlobalStyle`
     font-weight: bold;
   }
   
+  // Buttons
   button {
     font-family: var(--font-sans);
   }
 
+   // Progress Bar
   #nprogress {
     pointer-events: none;
   }
