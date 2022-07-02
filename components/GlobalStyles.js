@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStylesheet = createGlobalStyle`
+
+  // Global CSS Variables
   :root {
     /* Fonts */
     --font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -14,6 +16,7 @@ const GlobalStylesheet = createGlobalStyle`
     --gray: var(--grey);
     --lightGray: #e1e1e1;
     --lightGray: var(--lightGray);
+    --white: #ffffff;
     --offWhite: #ededed;
     --progress-color: var(--black);
 
@@ -22,6 +25,8 @@ const GlobalStylesheet = createGlobalStyle`
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09);
   }
 
+
+  // Body / Global
   html {
     font-size: 62.5%;
   }
@@ -38,9 +43,16 @@ const GlobalStylesheet = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  body {
+    background: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
+    transition: all 0.50s linear;
+  }
+
+  // Links
   a {
     text-decoration: none;
-    color: var(--black);
+    color: ${({ theme }) => theme.text};
   }
   a:hover {
     text-decoration: underline;
@@ -50,16 +62,18 @@ const GlobalStylesheet = createGlobalStyle`
     font-weight: bold;
   }
   
+  // Buttons
   button {
     font-family: var(--font-sans);
   }
 
+   // Progress Bar
   #nprogress {
     pointer-events: none;
   }
 
   #nprogress .bar {
-    background: var(--progress-color);
+    background: ${({ theme }) => theme.text};
     position: fixed;
     z-index: 1031;
     top: 0;
@@ -74,7 +88,8 @@ const GlobalStylesheet = createGlobalStyle`
     right: 0px;
     width: 100px;
     height: 100%;
-    box-shadow: 0 0 10px var(--progress-color), 0 0 5px var(--progress-color);
+    box-shadow: 0 0  ${({ theme }) => theme.text}, 0 0 5px ${({ theme }) =>
+  theme.text};
     opacity: 1.0;
 
     -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -96,8 +111,8 @@ const GlobalStylesheet = createGlobalStyle`
     box-sizing: border-box;
 
     border: solid 2px transparent;
-    border-top-color: var(--progress-color);
-    border-left-color: var(--progress-color);
+    border-top-color: ${({ theme }) => theme.text};
+    border-left-color: ${({ theme }) => theme.text};
     border-radius: 50%;
 
     -webkit-animation: nprogress-spinner 400ms linear infinite;
