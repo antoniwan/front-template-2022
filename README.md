@@ -11,7 +11,6 @@ Opinionated starter template site built with NextJS.
 - Base open graph meta tags
 - Google fonts setup
 
----
 
 ## Getting Started
 First, run the development server:
@@ -24,7 +23,6 @@ yarn dev
 
 Visit [http://localhost:3000](http://localhost:3000) with your browser to browse the project. The browser pages auto-update as you edit project files.
 
----
 
 ## Docs
 - [Next.js Documentation](https://nextjs.org/docs) 
@@ -32,7 +30,6 @@ Visit [http://localhost:3000](http://localhost:3000) with your browser to browse
 - [Next.js GitHub repository](https://github.com/vercel/next.js/)
 - [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)
 
----
 
 ## Credits
 
