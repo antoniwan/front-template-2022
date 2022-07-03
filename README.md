@@ -2,13 +2,12 @@
 Opinionated starter template site built with NextJS.
 
 - React 18.2.0
-- Global Stylesheets setup with CSS variables
-- Theme setup and base configuration
-- Layout setup and base structure
-- Feedback on route changes (lightwight CSS progress bar and spinner)
+- Styled-Components
+  - Global Stylesheets setup with CSS variables
+  - Theme setup and base configuration
+- Neat base Layout and Components structure
+- Feedback on route changes -> lightwight CSS progress bar and spinner
 - Dark mode / Light mode base implementation
-- Neat base Layouts and Components written in CSS flexbox
-- Base open graph meta tags
 - Google fonts setup
 
 
