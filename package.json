@@ -1,5 +1,10 @@
 {
   "name": "front-template-2022",
+  "author": {
+    "name": "Antonio Rodriguez",
+    "email": "antoniorodriguez@hey.com",
+    "url": "https://antoniorodriguez.us"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
