@@ -16,18 +16,24 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) with your browser to browse the project. The browser pages auto-update as you edit project files.
 
+
+## Tests
+Tests are written with Cypress. You can find them on `./cypress`. Have fun!
+
+```bash
+npm run cypress
+```
 
 ## Docs
 - [Next.js Documentation](https://nextjs.org/docs) 
 - [Next.js deployment documentation](https://nextjs.org/docs/deployment)
 - [Next.js GitHub repository](https://github.com/vercel/next.js/)
 - [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)
+- [Cypress Testing Docs](https://docs.cypress.io/)
 
 
 ## Credits
@@ -37,3 +43,4 @@ Visit [http://localhost:3000](http://localhost:3000) with your browser to browse
 - Styled-Components https://github.com/styled-components/styled-components
 - Sanitize.css https://github.com/csstools/sanitize.css
 - Easy progress bar and snipper for route changes https://ricostacruz.com/nprogress/
+- Tests with Cypress - https://cypress.io
