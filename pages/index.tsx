@@ -9,7 +9,12 @@ export default function Home() {
       </Head>
 
       <div className="fixed-width-container">
-        <h1>Main!</h1>
+        <h1>Hello, World!</h1>
+        <hr />
+        <p>
+          Welcome to my highly-opinionated React template web application built
+          with NextJS, TypeScript, styled-components, and Apollo GraphQL.
+        </p>
       </div>
     </>
   );
