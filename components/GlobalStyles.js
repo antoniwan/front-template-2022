@@ -23,6 +23,7 @@ const GlobalStylesheet = createGlobalStyle`
     /* Misc. */
     --maxWidth: 1200px;
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09);
+    --br: 12px;
   }
 
 
@@ -34,40 +35,19 @@ const GlobalStylesheet = createGlobalStyle`
   body {
     font-family: var(--font-sans);
     font-size: 1.6rem;
-    line-height: 1.6em;
+    line-height: 1.6rem;
     font-weight: 400;
     font-style: normal;
     letter-spacing: 0;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     transition: all 0.50s linear;
   }
 
-  // Links
-  a {
-    text-decoration: none;
-    color: ${({ theme }) => theme.text};
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  a:active,
-  a.active-link {
-    font-weight: bold;
-  }
-  
-  // Buttons
-  button {
-    font-family: var(--font-sans);
-  }
-
-   // Progress Bar
+  // Progress Bar
   #nprogress {
     pointer-events: none;
   }
@@ -137,6 +117,48 @@ const GlobalStylesheet = createGlobalStyle`
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+  // Links
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.text};
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  a:active,
+  a.active-link {
+    font-weight: bold;
+  }
+  
+  // Buttons
+  button {
+    font-family: var(--font-sans);
+  }
+
+  // Horizontal Rulers
+  hr {
+    border: 1px solid var(--black);
+    background: var(--black);
+    border-radius: var(--br);
+    height: 5px;
+    opacity: 0.666;
+  }
+
+  // Typography
+  h1 {
+    font-size: 2.4rem;
+    line-height: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  
 `;
 
 export default GlobalStylesheet;
