@@ -2,7 +2,8 @@
 Opinionated starter template site built with NextJS.
 
 - React 18.2.0
-- TypeScript Enabled!
+- TypeScript Enabled
+- Fetches data from the Apollo GraphQL client and includes examples
 - Styled-Components
   - Global Stylesheets setup with CSS variables
   - Theme setup and base configuration
@@ -10,6 +11,7 @@ Opinionated starter template site built with NextJS.
 - Feedback on route changes -> lightwight CSS progress bar and spinner
 - Dark mode / Light mode base implementation
 - Google fonts setup
+- Hosts and serves images from Cloudinary
 
 
 ## Getting Started
