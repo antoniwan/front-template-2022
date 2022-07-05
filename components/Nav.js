@@ -15,16 +15,20 @@ const NavStyles = styled.nav`
   a {
     font-size: 1.2rem;
     margin-right: 1rem;
+    text-decoration: none;
   }
   a:last-child {
     margin-right: 0px;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 `;
 
 export default function Nav() {
   return (
     <NavStyles>
-      <BetterLink href="/examples/fixed-width-base-page-for-fetching-data">
+      <BetterLink href="/examples/fetching-data/static-data">
         <a>Fetching Data</a>
       </BetterLink>
       <BetterLink href="/examples/full-width-base-page">

@@ -42,6 +42,10 @@ const HeaderStyles = styled.header`
     min-width: 50px;
     min-height: 30px;
     z-index: 0;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .mid-section,
