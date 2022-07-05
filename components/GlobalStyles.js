@@ -2,33 +2,27 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStylesheet = createGlobalStyle`
 
-  // Global CSS Variables
   :root {
-    /* Fonts */
     --font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     --font-serif: Georgia, Times, serif;
     --font-mono: Menlo, Courier, monospace;
-
-    /* Colors */
     --green: #2ea44f;
     --red: #ff0000;
     --black: #393939;
     --grey: #393939;
     --gray: var(--grey);
     --lightGray: #FAFBFC;
+    --lessLightGray: #f3f4f6;
     --lightGray: var(--lightGray);
+    --lessLightGrey: var(--lessLightGray);
     --white: #ffffff;
     --offWhite: #ededed;
     --progress-color: var(--black);
-
-    /* Misc. */
     --maxWidth: 1200px;
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09);
     --br: 6px;
   }
 
-
-  // Body / Global
   html {
     font-size: 62.5%;
   }
@@ -43,7 +37,7 @@ const GlobalStylesheet = createGlobalStyle`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: ${({ theme }) => theme.body};
+    background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
     transition: all 0.50s linear;
   }
@@ -136,11 +130,11 @@ const GlobalStylesheet = createGlobalStyle`
   button {
     font-family: var(--font-sans);
     color: ${({ theme }) => theme.text};
-    background-color: var(--lightGray);
+    background-color: ${({ theme }) => theme["button-background"]};
     appearance: none;
     border: 1px solid rgba(27, 31, 35, 0.15);
     border-radius: var(--br);
-    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-shadow: ${({ theme }) => theme["button-box-shadow"]};
     box-sizing: border-box;
     cursor: pointer;
     display: inline-block;
@@ -159,7 +153,8 @@ const GlobalStylesheet = createGlobalStyle`
     word-wrap: break-word;
   }
   button:hover {
-    background-color: #F3F4F6;
+    color: ${({ theme }) => theme["button-background"]};
+    background-color: ${({ theme }) => theme["button-background-hover"]};
     text-decoration: none;
     transition-duration: 0.1s;
   }
@@ -197,8 +192,7 @@ const GlobalStylesheet = createGlobalStyle`
     li {
       margin-top: 1rem;
     }
-  }
-  
+  } 
 `;
 
 export default GlobalStylesheet;
