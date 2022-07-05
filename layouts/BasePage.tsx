@@ -40,7 +40,7 @@ const BasePageLayoutStyles = styled.div`
   }
 `;
 
-export default function BasePage({ children }) {
+export default function BasePage({ children }: { children: React.ReactNode }) {
   return (
     <BasePageLayoutStyles>
       <div className="viewport">
