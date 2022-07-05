@@ -145,7 +145,7 @@ const GlobalStylesheet = createGlobalStyle`
     cursor: pointer;
     display: inline-block;
     font-size: 1.4rem;
-    font-weight: lighter;
+    font-weight: light;
     line-height: 2rem;
     list-style: none;
     padding: 6px 16px;
@@ -175,8 +175,8 @@ const GlobalStylesheet = createGlobalStyle`
 
   // Typography
   h1 {
-    font-size: 2.4rem;
-    line-height: 3rem;
+    font-size: 3.8rem;
+    line-height: 5rem;
     margin-bottom: 1rem;
   }
 
@@ -192,6 +192,12 @@ const GlobalStylesheet = createGlobalStyle`
     margin-bottom: 1rem;
   }
 
+  // Lists
+  ul {
+    li {
+      margin-top: 1rem;
+    }
+  }
   
 `;
 
