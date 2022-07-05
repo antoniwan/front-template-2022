@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import client from "../../../libraries/apollo-client";
-import { userImagesQuery, UserImagesContainer } from "./static-data";
+import { userImagesQuery, UserImagesContainer } from "./static";
 
 export default function ExamplesFetchingDataStatic({ serverSideUserImages }) {
   return (

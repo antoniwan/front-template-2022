@@ -61,7 +61,7 @@ export default function ExamplesFetchingDataStatic({ staticUserImages }) {
             ))}
         </UserImagesContainer>
 
-        <Link href="/examples/fetching-data/server-side-data">
+        <Link href="/examples/fetching-data/server-side">
           <button>Next Example: Server-side data fetching!</button>
         </Link>
       </div>
