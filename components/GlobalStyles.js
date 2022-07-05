@@ -10,11 +10,12 @@ const GlobalStylesheet = createGlobalStyle`
     --font-mono: Menlo, Courier, monospace;
 
     /* Colors */
+    --green: #2ea44f;
     --red: #ff0000;
     --black: #393939;
     --grey: #393939;
     --gray: var(--grey);
-    --lightGray: #e1e1e1;
+    --lightGray: #FAFBFC;
     --lightGray: var(--lightGray);
     --white: #ffffff;
     --offWhite: #ededed;
@@ -23,7 +24,7 @@ const GlobalStylesheet = createGlobalStyle`
     /* Misc. */
     --maxWidth: 1200px;
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09);
-    --br: 12px;
+    --br: 6px;
   }
 
 
@@ -120,11 +121,11 @@ const GlobalStylesheet = createGlobalStyle`
 
   // Links
   a {
-    text-decoration: none;
+    text-decoration: underline;
     color: ${({ theme }) => theme.text};
   }
   a:hover {
-    text-decoration: underline;
+    
   }
   a:active,
   a.active-link {
@@ -134,12 +135,39 @@ const GlobalStylesheet = createGlobalStyle`
   // Buttons
   button {
     font-family: var(--font-sans);
+    color: ${({ theme }) => theme.text};
+    background-color: var(--lightGray);
+    appearance: none;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: var(--br);
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: lighter;
+    line-height: 2rem;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+  }
+  button:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
   }
 
   // Horizontal Rulers
   hr {
-    border: 1px solid var(--black);
-    background: var(--black);
+    border: 1px solid ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.text};
     border-radius: var(--br);
     height: 5px;
     opacity: 0.666;
@@ -149,6 +177,12 @@ const GlobalStylesheet = createGlobalStyle`
   h1 {
     font-size: 2.4rem;
     line-height: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 2.9rem;
     margin-bottom: 1rem;
   }
 
