@@ -26,8 +26,13 @@ export default function ExamplesFetchingDataStatic({ staticUserImages }) {
   return (
     <>
       <Head>
-        <title>Fetching Data on a fixed width base page example</title>
-        <meta name="description" content="Home page" />
+        <title>
+          Fetching statically rendered page data with Apollo GraphQL and NextJS
+        </title>
+        <meta
+          name="description"
+          content="Fetching statically rendered page data with Apollo GraphQL and NextJS"
+        />
       </Head>
 
       <div className="fixed-width-container">

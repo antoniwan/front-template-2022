@@ -9,11 +9,11 @@ export default function ExamplesFetchingDataStatic({ serverSideUserImages }) {
     <>
       <Head>
         <title>
-          Fetching server-side page data with Apollo GraphQL and NextJS
+          Fetching client-side page data with Apollo GraphQL and NextJS
         </title>
         <meta
           name="description"
-          content="Fetching server-side page data with Apollo GraphQL and NextJS"
+          content="Fetching client-side page data with Apollo GraphQL and NextJS"
         />
       </Head>
 
@@ -21,7 +21,7 @@ export default function ExamplesFetchingDataStatic({ serverSideUserImages }) {
         <h1>Fetching data with the Apollo GraphQL Client</h1>
         <hr />
 
-        <h2>Example 2: Server-side rendered page data</h2>
+        <h2>Example 3: Client-side rendered page data</h2>
         <p>
           The data below (public user-uploaded images) is fetched during the
           page request. Data is then passed to the <i>page</i> component as
@@ -48,8 +48,8 @@ export default function ExamplesFetchingDataStatic({ serverSideUserImages }) {
             ))}
         </UserImagesContainer>
 
-        <Link href="/examples/fetching-data/client-side">
-          <button>Next Example: Client-side data fetching!</button>
+        <Link href="/examples">
+          <button>Back to the /examples page</button>
         </Link>
       </div>
     </>

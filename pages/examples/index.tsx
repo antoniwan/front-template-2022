@@ -14,6 +14,16 @@ export default function Examples() {
         <hr />
         <ul>
           <li>
+            <Link href="/">
+              <a>Layout: Base Page w/ Fixed Width</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/examples/full-width-base-page">
+              <a>Layout: Base Page w/ Full Width</a>
+            </Link>
+          </li>
+          <li>
             <Link href="/examples/fetching-data/static">
               <a>Data Fetching: Static</a>
             </Link>
@@ -21,6 +31,11 @@ export default function Examples() {
           <li>
             <Link href="/examples/fetching-data/server-side">
               <a>Data Fetching: Server Side</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/examples/fetching-data/client-side">
+              <a>Data Fetching: Client Side</a>
             </Link>
           </li>
         </ul>
