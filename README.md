@@ -2,6 +2,7 @@
 Opinionated starter template site built with NextJS.
 
 - React 18.2.0
+- TypeScript Enabled!
 - Styled-Components
   - Global Stylesheets setup with CSS variables
   - Theme setup and base configuration
