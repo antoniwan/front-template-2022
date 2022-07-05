@@ -24,10 +24,10 @@ const NavStyles = styled.nav`
 export default function Nav() {
   return (
     <NavStyles>
-      <BetterLink href="/layout-examples/fixed-width-base-page">
-        <a>Example Page</a>
+      <BetterLink href="/examples/fixed-width-base-page-for-fetching-data">
+        <a>Fetching Data</a>
       </BetterLink>
-      <BetterLink href="/layout-examples/full-width-base-page">
+      <BetterLink href="/examples/full-width-base-page">
         <a>Example Page</a>
       </BetterLink>
     </NavStyles>
