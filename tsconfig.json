@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/libraries/*": ["libraries/*"],
+      "@/layouts/*": ["layouts/*"],
+    },
     "target": "es5",
     "lib": [
       "dom",
