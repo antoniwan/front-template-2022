@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import BetterLink from "./BetterLink";
-import useUser from "../hooks/User";
+import useUser from "../hooks/useUser";
 
 const NavStyles = styled.nav`
   position: relative;

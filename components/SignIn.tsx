@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import useForm from "../hooks/Forms";
+import { gql } from "@apollo/client";
+import useForm from "../hooks/useForm";
 
 const Form = styled.form`
   display: flex;
@@ -30,11 +31,13 @@ const Form = styled.form`
 
   input {
     margin-top: 4px;
+    padding: 8px;
+    border-radius: 6px;
   }
 `;
 
 export default function SignIn() {
-  const { inputs, handleChange, resetForm } = useForm({
+  const { inputs, handleChange } = useForm({
     email: "",
     password: "",
   });
@@ -68,6 +71,7 @@ export default function SignIn() {
               id="password"
               type="password"
               name="password"
+              placeholder="Your Password"
               value={inputs.password}
               onChange={handleChange}
             />
