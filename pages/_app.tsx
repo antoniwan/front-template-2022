@@ -13,6 +13,7 @@ import "sanitize.css/forms.css";
 import GlobalStylesheet from "../components/globalstyles";
 import { ApolloProvider } from "@apollo/client";
 import client from "../libraries/apollo-client";
+import { SessionProvider } from "../context/session";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -22,20 +23,22 @@ function App({ Component, darkMode, pageProps }: AppProps & { darkMode }) {
   const { darkModeActive } = darkMode;
   const activeTheme = darkModeActive ? darkTheme : lightTheme;
   return (
-    <ApolloProvider client={client}>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
-        />
-      </Head>
-      <ThemeProvider theme={activeTheme}>
-        <GlobalStylesheet />
-        <BasePage>
-          <Component {...pageProps} />
-        </BasePage>
-      </ThemeProvider>
-    </ApolloProvider>
+    <ThemeProvider theme={activeTheme}>
+      <SessionProvider>
+        <ApolloProvider client={client}>
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+            />
+          </Head>
+          <GlobalStylesheet />
+          <BasePage>
+            <Component {...pageProps} />
+          </BasePage>
+        </ApolloProvider>
+      </SessionProvider>
+    </ThemeProvider>
   );
 }
 

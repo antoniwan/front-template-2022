@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { SessionContext, useSessionContext } from "../context/session";
 import BetterLink from "./BetterLink";
-import useUser from "../hooks/useUser";
 
 const NavStyles = styled.nav`
   position: relative;
@@ -25,30 +25,42 @@ const NavStyles = styled.nav`
   }
 `;
 
-export default function Nav() {
-  const user = useUser();
+function Nav() {
+  const [sessionState, setSessionState] = useSessionContext(SessionContext);
+  const { isAuthenticated } = sessionState;
 
-  console.log(`nav user`, user);
+  const handleLogout = () => {
+    setSessionState({
+      ...sessionState,
+      isAuthenticated: false,
+      user: undefined,
+    });
+  };
+
   return (
     <NavStyles>
       <BetterLink href="/examples">
         <a>Examples</a>
       </BetterLink>
 
-      <>
-        <BetterLink href="/sign-in">
-          <a>Sign in</a>
-        </BetterLink>
-      </>
+      {!isAuthenticated && (
+        <>
+          <BetterLink href="/sign-in">
+            <a>Sign in</a>
+          </BetterLink>
+        </>
+      )}
 
-      <>
-        <BetterLink href="/account">
-          <a>My Account</a>
-        </BetterLink>
-        <BetterLink href="/account/log-out">
-          <a>Log Out</a>
-        </BetterLink>
-      </>
+      {isAuthenticated && (
+        <>
+          <BetterLink href="/account">
+            <a>My Account</a>
+          </BetterLink>
+          <button onClick={handleLogout}>Log Out</button>
+        </>
+      )}
     </NavStyles>
   );
 }
+
+export default Nav;

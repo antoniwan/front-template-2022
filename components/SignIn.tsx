@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { gql, useMutation } from "@apollo/client";
+import { SessionContext, useSessionContext } from "../context/session";
 import { GET_USER_QUERY } from "../hooks/useUser";
 import useForm from "../hooks/useForm";
 
@@ -51,31 +52,42 @@ const Form = styled.form`
 `;
 
 export default function SignIn() {
+  const [sessionState, setSessionState] = useSessionContext(SessionContext);
   const { inputs, handleChange, resetForm } = useForm({
     email: "",
     password: "",
   });
-
   const [signin, { data, error, loading }] = useMutation(SIGNIN_USER_MUTATION, {
     variables: inputs,
-    refetchQueries: [GET_USER_QUERY],
   });
 
+  // TODO: handle server unavail!
   if (error) console.log(`signin.tsx error log`, error);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await signin();
+    const authResult = await signin();
+    if (
+      authResult.data?.authenticateUserWithPassword?.__typename ===
+      "UserAuthenticationWithPasswordSuccess"
+    ) {
+      setSessionState({
+        ...sessionState,
+        isAuthenticated: true,
+        user: authResult.data?.authenticateUserWithPassword?.item,
+      });
+    }
     resetForm();
   }
 
-  console.log(`the data`, data);
+  const authFailure =
+    data?.authenticateUserWithPassword?.__typename ===
+    "UserAuthenticationWithPasswordFailure";
 
   return (
     <>
-      <Form onSubmit={handleSubmit} action="/get-sign-in" method="post">
-        {data?.authenticateUserWithPassword?.__typename ===
-          "UserAuthenticationWithPasswordFailure" && (
+      <Form onSubmit={handleSubmit} method="post">
+        {authFailure && (
           <div className="error-message">
             <h3>Sorry, we could not find your account.</h3>
           </div>

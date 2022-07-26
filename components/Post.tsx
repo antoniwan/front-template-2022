@@ -106,7 +106,6 @@ const StyledPost = styled.div`
 `;
 
 export default function Post({ post }: { post: any }) {
-  console.log(post);
   const hasTitle = post.title ? true : false;
   const hasAuthorInformation = post.author.id ? true : false;
   const hasProfilePicture = post.author.images.length !== 0;
