@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Nav from "./Nav";
 import ThemeToggle from "./ThemeToggle";
 import { useDarkMode } from "next-dark-mode";
+import { SessionContext, useSessionContext } from "../context/session";
 
 const Logo = styled.h1`
   margin: 0;
@@ -92,10 +93,17 @@ const HeaderStyles = styled.header`
 `;
 
 export default function Header() {
+  const [sessionState, setSessionState] = useSessionContext(SessionContext);
   const { darkModeActive, switchToDarkMode, switchToLightMode } = useDarkMode();
-  const toggleDarkMode = () =>
-    darkModeActive ? switchToLightMode() : switchToDarkMode();
+  const toggleDarkMode = () => {
+    setSessionState({
+      ...sessionState,
+      theme: darkModeActive ? "light" : "dark",
+    });
+    return darkModeActive ? switchToLightMode() : switchToDarkMode();
+  };
   const activeTheme = darkModeActive ? "dark" : "light";
+
   return (
     <HeaderStyles>
       <div className="logo-section">
