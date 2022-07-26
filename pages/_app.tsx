@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+import Head from "next/head";
 import Router from "next/router";
 import withDarkMode from "next-dark-mode";
 import NProgress from "nprogress";
@@ -22,6 +23,12 @@ function App({ Component, darkMode, pageProps }: AppProps & { darkMode }) {
   const activeTheme = darkModeActive ? darkTheme : lightTheme;
   return (
     <ApolloProvider client={client}>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+        />
+      </Head>
       <ThemeProvider theme={activeTheme}>
         <GlobalStylesheet />
         <BasePage>
