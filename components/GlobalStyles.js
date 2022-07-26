@@ -195,6 +195,18 @@ const GlobalStylesheet = createGlobalStyle`
       margin-top: 1rem;
     }
   } 
+
+  // Forms
+  form {
+    margin: 0;
+    padding: 0;
+
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
 `;
 
 export default GlobalStylesheet;

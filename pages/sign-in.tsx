@@ -9,7 +9,7 @@ export default function SignInPage() {
       </Head>
 
       <div className="fixed-width-container">
-        <h1>Join MyApp!</h1>
+        <h1>Sign in to MyApp</h1>
         <hr />
         <SignIn />
       </div>
