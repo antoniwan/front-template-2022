@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Link from "next/link";
 import BetterLink from "./BetterLink";
+import useUser from "../hooks/User";
 
 const NavStyles = styled.nav`
   position: relative;
@@ -26,11 +26,34 @@ const NavStyles = styled.nav`
 `;
 
 export default function Nav() {
+  const user = useUser();
+  const userIsAuthenticated =
+    user === undefined || user === null ? false : true;
+
+  console.log(userIsAuthenticated ? `User is auth!` : `User not auth`);
   return (
     <NavStyles>
       <BetterLink href="/examples">
         <a>Examples</a>
       </BetterLink>
+
+      {!userIsAuthenticated && (
+        <>
+          <BetterLink href="/sign-in">
+            <a>Sign in</a>
+          </BetterLink>
+        </>
+      )}
+      {userIsAuthenticated && (
+        <>
+          <BetterLink href="/account">
+            <a>Account</a>
+          </BetterLink>
+          <BetterLink href="/account/log-out">
+            <a>Log Out</a>
+          </BetterLink>
+        </>
+      )}
     </NavStyles>
   );
 }
