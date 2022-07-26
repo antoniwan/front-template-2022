@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { gql, useMutation } from "@apollo/client";
-import { SessionContext, useSessionContext } from "../context/session";
-import { GET_USER_QUERY } from "../hooks/useUser";
+import { useRouter } from "next/router";
 import useForm from "../hooks/useForm";
+import { sessionData } from "libs/apollo";
 
 const SIGNIN_USER_MUTATION = gql`
   mutation SIGNIN_USER_MUTATION($email: String!, $password: String!) {
@@ -49,10 +49,17 @@ const Form = styled.form`
     padding: 8px;
     border-radius: 6px;
   }
+
+  .error-message {
+    h3 {
+      font-size: 1.5rem;
+      color: var(--red);
+    }
+  }
 `;
 
 export default function SignIn() {
-  const [sessionState, setSessionState] = useSessionContext(SessionContext);
+  const router = useRouter();
   const { inputs, handleChange, resetForm } = useForm({
     email: "",
     password: "",
@@ -71,11 +78,12 @@ export default function SignIn() {
       authResult.data?.authenticateUserWithPassword?.__typename ===
       "UserAuthenticationWithPasswordSuccess"
     ) {
-      setSessionState({
-        ...sessionState,
+      await sessionData({
+        ...sessionData(),
         isAuthenticated: true,
         user: authResult.data?.authenticateUserWithPassword?.item,
       });
+      router.push("/account");
     }
     resetForm();
   }

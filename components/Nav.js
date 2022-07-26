@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { SessionContext, useSessionContext } from "../context/session";
+import { useRouter } from "next/router";
 import BetterLink from "./BetterLink";
+import { sessionData } from "libs/apollo";
 
 const NavStyles = styled.nav`
   position: relative;
@@ -26,15 +27,16 @@ const NavStyles = styled.nav`
 `;
 
 function Nav() {
-  const [sessionState, setSessionState] = useSessionContext(SessionContext);
-  const { isAuthenticated } = sessionState;
+  const router = useRouter();
+  const isAuthenticated = sessionData().isAuthenticated;
 
-  const handleLogout = () => {
-    setSessionState({
-      ...sessionState,
+  const handleLogout = async () => {
+    await sessionData({
+      ...sessionData(),
       isAuthenticated: false,
       user: undefined,
     });
+    router.push("/");
   };
 
   return (

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Nav from "./Nav";
 import ThemeToggle from "./ThemeToggle";
 import { useDarkMode } from "next-dark-mode";
-import { SessionContext, useSessionContext } from "../context/session";
+import { sessionData } from "libs/apollo";
 
 const Logo = styled.h1`
   margin: 0;
@@ -93,11 +93,10 @@ const HeaderStyles = styled.header`
 `;
 
 export default function Header() {
-  const [sessionState, setSessionState] = useSessionContext(SessionContext);
   const { darkModeActive, switchToDarkMode, switchToLightMode } = useDarkMode();
   const toggleDarkMode = () => {
-    setSessionState({
-      ...sessionState,
+    sessionData({
+      ...sessionData(),
       theme: darkModeActive ? "light" : "dark",
     });
     return darkModeActive ? switchToLightMode() : switchToDarkMode();
