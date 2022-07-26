@@ -1,4 +1,5 @@
 import Head from "next/head";
+import PostsList from "../components/PostsList";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
           Welcome to my highly-opinionated React template web application built
           with NextJS, TypeScript, styled-components, and Apollo GraphQL.
         </p>
+        <PostsList />
       </div>
     </>
   );

@@ -5,7 +5,7 @@ export const lightTheme = {
   "button-background-hover": "var(--lessLightGray)",
   "button-box-shadow":
     "rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset",
-  background: "var(--white)",
+  background: "var(--lightBackground)",
 };
 
 export const darkTheme = {
@@ -15,5 +15,5 @@ export const darkTheme = {
   "button-background-hover": "var(--lessLightGray)",
   "button-box-shadow":
     "rgba(255, 255, 255, 0.25) 0 1px 0, rgba(27, 31, 35, 0.04) 0 1px 0 inset",
-  background: "var(--black)",
+  background: "var(--darkBackground)",
 };

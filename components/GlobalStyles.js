@@ -17,6 +17,8 @@ const GlobalStylesheet = createGlobalStyle`
     --lessLightGrey: var(--lessLightGray);
     --white: #ffffff;
     --offWhite: #ededed;
+    --lightBackground: #f7f7f8;
+    --darkBackground: #393939;
     --progress-color: var(--black);
     --maxWidth: 1200px;
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09);
@@ -171,19 +173,19 @@ const GlobalStylesheet = createGlobalStyle`
   // Typography
   h1 {
     font-size: 3.8rem;
-    line-height: 5rem;
+    line-height: 1.6;
     margin-bottom: 1rem;
   }
 
   h2 {
     font-size: 2rem;
-    line-height: 2.9rem;
+    line-height: 1.6;
     margin-bottom: 1rem;
   }
 
   p {
     font-size: 1.4rem;
-    line-height: 2.2rem;
+    line-height: 1.6;
     margin-bottom: 1rem;
   }
 
