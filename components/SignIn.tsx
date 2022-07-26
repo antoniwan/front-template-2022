@@ -1,6 +1,26 @@
 import styled from "styled-components";
-import { gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
+import { GET_USER_QUERY } from "../hooks/useUser";
 import useForm from "../hooks/useForm";
+
+const SIGNIN_USER_MUTATION = gql`
+  mutation SIGNIN_USER_MUTATION($email: String!, $password: String!) {
+    authenticateUserWithPassword(email: $email, password: $password) {
+      ... on UserAuthenticationWithPasswordSuccess {
+        item {
+          id
+          email
+          name
+          displayName
+          username
+        }
+      }
+      ... on UserAuthenticationWithPasswordFailure {
+        message
+      }
+    }
+  }
+`;
 
 const Form = styled.form`
   display: flex;
@@ -23,12 +43,6 @@ const Form = styled.form`
     margin-bottom: 14px;
   }
 
-  fieldset.email label {
-  }
-
-  fieldset.password {
-  }
-
   input {
     margin-top: 4px;
     padding: 8px;
@@ -37,18 +51,36 @@ const Form = styled.form`
 `;
 
 export default function SignIn() {
-  const { inputs, handleChange } = useForm({
+  const { inputs, handleChange, resetForm } = useForm({
     email: "",
     password: "",
   });
 
-  function handleSubmit(e) {
+  const [signin, { data, error, loading }] = useMutation(SIGNIN_USER_MUTATION, {
+    variables: inputs,
+    refetchQueries: [GET_USER_QUERY],
+  });
+
+  if (error) console.log(`signin.tsx error log`, error);
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(inputs);
+    await signin();
+    resetForm();
   }
+
+  console.log(`the data`, data);
+
   return (
     <>
       <Form onSubmit={handleSubmit} action="/get-sign-in" method="post">
+        {data?.authenticateUserWithPassword?.__typename ===
+          "UserAuthenticationWithPasswordFailure" && (
+          <div className="error-message">
+            <h3>Sorry, we could not find your account.</h3>
+          </div>
+        )}
+
         <fieldset className="email">
           <label htmlFor="email">
             Email
@@ -60,6 +92,7 @@ export default function SignIn() {
               autoComplete="email"
               value={inputs.email}
               onChange={handleChange}
+              required
             />
           </label>
         </fieldset>
@@ -74,10 +107,13 @@ export default function SignIn() {
               placeholder="Your Password"
               value={inputs.password}
               onChange={handleChange}
+              required
             />
           </label>
         </fieldset>
-        <button type="submit">Log in</button>
+        <button type="submit" disabled={loading ? true : false}>
+          {!loading ? "Log in" : "Loading..."}
+        </button>
       </Form>
       <p>Forgot password?</p>
     </>

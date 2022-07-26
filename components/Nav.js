@@ -27,33 +27,28 @@ const NavStyles = styled.nav`
 
 export default function Nav() {
   const user = useUser();
-  const userIsAuthenticated =
-    user === undefined || user === null ? false : true;
 
-  console.log(userIsAuthenticated ? `User is auth!` : `User not auth`);
+  console.log(`nav user`, user);
   return (
     <NavStyles>
       <BetterLink href="/examples">
         <a>Examples</a>
       </BetterLink>
 
-      {!userIsAuthenticated && (
-        <>
-          <BetterLink href="/sign-in">
-            <a>Sign in</a>
-          </BetterLink>
-        </>
-      )}
-      {userIsAuthenticated && (
-        <>
-          <BetterLink href="/account">
-            <a>Account</a>
-          </BetterLink>
-          <BetterLink href="/account/log-out">
-            <a>Log Out</a>
-          </BetterLink>
-        </>
-      )}
+      <>
+        <BetterLink href="/sign-in">
+          <a>Sign in</a>
+        </BetterLink>
+      </>
+
+      <>
+        <BetterLink href="/account">
+          <a>My Account</a>
+        </BetterLink>
+        <BetterLink href="/account/log-out">
+          <a>Log Out</a>
+        </BetterLink>
+      </>
     </NavStyles>
   );
 }
