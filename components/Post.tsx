@@ -1,9 +1,27 @@
 import { DocumentRenderer } from "@keystone-6/document-renderer";
 import Image from "next/image";
 import styled from "styled-components";
+import { formatDistance, parseJSON } from "date-fns";
 
 const StyledPost = styled.div`
-  margin: 10px;
+  padding: 20px;
+  border-radius: 6px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: stretch;
+  align-content: center;
+  margin-bottom: 20px;
+  border: ${({ theme }) => theme["box-border"]};
+  background: ${({ theme }) => theme["box-background"]};
+  transition: border-color 100ms linear, box-shadow 100ms linear;
+
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  }
 
   h3 {
     font-size: 1.5rem;
@@ -23,10 +41,17 @@ const StyledPost = styled.div`
   .post-info-wrapper {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     align-content: flex-start;
     flex-wrap: nowrap;
     margin-bottom: 8px;
+  }
+  .post-info-name-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
   }
 
   .post-author {
@@ -57,12 +82,25 @@ const StyledPost = styled.div`
   }
   .post-author-displayName {
     font-weight: bold;
+    font-size: 1.4rem;
   }
 
   .post-author-avatar-wrapper {
     margin-right: 10px;
     img {
-      border-radius: 20px;
+      border-radius: 6px;
+    }
+  }
+
+  .post-date {
+    opacity: 0.75;
+  }
+
+  .post-content {
+    margin-top: 10px;
+
+    *:last-child {
+      margin-bottom: 0;
     }
   }
 `;
@@ -73,50 +111,74 @@ export default function Post({ post }: { post: any }) {
   const hasAuthorInformation = post.author.id ? true : false;
   const hasProfilePicture = post.author.images.length !== 0;
   const profilePicture = post.author.images[0];
+  const todaysDate = Date.now();
+  const publishedOnDate = parseJSON(post.publishDate);
+  const createdOnVerbose = formatDistance(publishedOnDate, todaysDate);
 
   return (
     <StyledPost className={`post post-${post.id}`}>
-      {hasAuthorInformation && (
-        <div className="post-info">
-          <div className="post-info-wrapper">
-            {hasProfilePicture && (
-              <span className="post-author-avatar-wrapper">
-                <Image
-                  src={profilePicture.image.publicUrl}
-                  alt=""
-                  width="40"
-                  height="40"
-                  layout="intrinsic"
-                />
-              </span>
-            )}
-
-            <div className="post-info-name-and-date-wrapper">
-              <div className="post-info-name-wrapper">
-                {post.author.displayName && (
-                  <span className="post-author-displayName">
-                    {post.author.displayName}
+      <div className="post-header">
+        <div className="post-header-info">
+          {hasAuthorInformation && (
+            <div className="post-info">
+              <div className="post-info-wrapper">
+                {hasProfilePicture && (
+                  <span className="post-author-avatar-wrapper">
+                    <Image
+                      src={profilePicture.image.publicUrl}
+                      alt=""
+                      width="40"
+                      height="40"
+                      layout="intrinsic"
+                    />
                   </span>
                 )}
-                {post.author.username && (
-                  <span className="post-author-username">
-                    @{post.author.username}
-                  </span>
-                )}
-              </div>
 
-              <div className="post-date-wrapper">
-                <span className="post-date">December 12, 2019</span>
+                <div className="post-info-name-and-date-wrapper">
+                  <div className="post-info-name-wrapper">
+                    {post.author.displayName && (
+                      <span className="post-author-displayName">
+                        {post.author.displayName}
+                      </span>
+                    )}
+                    {post.author.username && (
+                      <span className="post-author-username">
+                        @{post.author.username}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="post-date-wrapper">
+                    <span className="post-date">{createdOnVerbose} ago</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          )}
+
+          {!hasAuthorInformation && (
+            <div className="post-info">
+              <div className="post-info-wrapper">
+                <div className="post-info-name-and-date-wrapper">
+                  <div className="post-info-name-wrapper">
+                    <span className="post-author-displayName">System</span>
+                  </div>
+
+                  <div className="post-date-wrapper">
+                    <span className="post-date">{createdOnVerbose} ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
-      {hasTitle && <h3 className="post-title">{post.title}</h3>}
-      <DocumentRenderer document={post.content.document} />
+        <div className="post-header-toolbar"></div>
+      </div>
+
+      <div className="post-content">
+        {hasTitle && <h3 className="post-title">{post.title}</h3>}
+        <DocumentRenderer document={post.content.document} />
+      </div>
     </StyledPost>
   );
-
-  // TODO: post element layout title or no title
-  // TODO: ^ layout with author info or no author info
 }
